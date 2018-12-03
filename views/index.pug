@@ -1,0 +1,79 @@
+html
+	head
+		title= title
+		link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+		style
+			include ../css/styles.css
+		script(src="https://code.jquery.com/jquery-3.3.1.min.js")
+
+	body
+		.wrapper
+			h1 Search Devices
+			form(method="POST", action="/")
+				.form-group
+					label(for="parameters") Parameters:
+					input#parameters.form-control(type='text', placeholder='parameters', name='parameters')
+				button.btn.btn-primary(type="submit") Submit Parameters
+			h1 Take Action			
+			form(method="POST", action="/action")
+				label(for="selectAll") Select All
+				<br>
+				input(type="checkbox", name="selectAll")
+				<br>
+				select(name="action", required=required)
+					option(value="reboot", name="action") Reboot
+					option(value="action2", name="action") Action2
+					option(value="action3", name="action") Action3
+					option(value="action4", name="action") Action4
+					option(value="action5", name="action") Action5
+					option(value="action6", name="action") Action6
+				button.btn.btn-primary.actionSubmit(type="submit") Submit action and devices
+				.row
+					.col-md-2#locationID
+						h2 Location ID
+					.col-md-2#regCode
+						h2 regCode
+					.col-md-2#organizationID
+						h2 Organization ID
+					.col-md-2#organizationAssetTag
+						h2 Organization assetTag
+					.col-md-2#contentID
+						h2 Content ID
+					.col-md-2#contentExp
+						h2 Content Exp
+				.row
+					.col-md-2
+						ol
+							- var count = 1;
+							each obj in data
+								.list-container
+									li #{obj.general.location.id}
+									input(type="checkbox" name="id" value=count)
+									<br>
+									- count++;
+					.col-md-2
+						ul
+							each obj in data
+								.list-container
+									li= obj.general.regCode	
+					.col-md-2
+						ul
+							each obj in data
+								.list-container
+									li= obj.general.organization.id	
+					.col-md-2
+						ul
+							each obj in data
+								.list-container
+									li= obj.general.organization.assetTag	
+					.col-md-2
+						ul
+							each obj in data
+								.list-container
+									li= obj.general.content.id	
+					.col-md-2
+						ul
+							each obj in data
+								.list-container
+									li= obj.general.content.exp											
+				button.btn.btn-primary(type="submit") Submit				

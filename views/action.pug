@@ -1,0 +1,16 @@
+html
+	head
+		title= title
+		link(rel='stylesheet', href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css")
+		style
+			include ../css/styles.css
+	body
+		.wrapper
+			.row
+				.col-md-2
+					h2 Devices Chosen
+					each param in params.id
+						p= param
+				.col-md-2
+					h2 Action Taken
+						p.actions= params.action
